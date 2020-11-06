@@ -1,0 +1,4 @@
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Lockdown projects\C++\TheCherno\HelloWorld\Debug\HelloWorld.exe
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Lockdown projects\C++\TheCherno\HelloWorld\Debug\HelloWorld.pdb
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\HelloWorld\Debug\HelloWorld.exe
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\HelloWorld\Debug\HelloWorld.pdb

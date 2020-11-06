@@ -1,0 +1,6 @@
+﻿  Log.cpp
+  Main.cpp
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\HelloWorld\Main.cpp(9,28): error C2664: 'void Log(const char *)': cannot convert argument 1 from 'unsigned int' to 'const char *'
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\HelloWorld\Main.cpp(9,6): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\HelloWorld\Main.cpp(1,6): message : see declaration of 'Log'
+  Generating Code...

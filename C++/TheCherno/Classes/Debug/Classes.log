@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\Classes\Main.cpp(11,8): error C2248: 'Player::x': cannot access private member declared in class 'Player'
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\Classes\Main.cpp(6): message : see declaration of 'Player::x'
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\Classes\Main.cpp(5): message : see declaration of 'Player'

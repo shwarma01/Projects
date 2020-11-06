@@ -1,0 +1,2 @@
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\Local_static\Debug\Local_static.exe
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\TheCherno\Local_static\Debug\Local_static.pdb

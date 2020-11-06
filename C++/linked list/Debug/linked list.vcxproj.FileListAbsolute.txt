@@ -1,0 +1,2 @@
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\linked list\Debug\linked list.exe
+C:\Users\Ayush.WKDBOY-COMP\Desktop\Projects\C++\linked list\Debug\linked list.pdb
