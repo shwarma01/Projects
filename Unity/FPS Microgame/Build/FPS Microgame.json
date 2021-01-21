@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "MyFirstGame",
+"productVersion": "1.2.0",
+"dataUrl": "FPS Microgame.data.unityweb",
+"wasmCodeUrl": "FPS Microgame.wasm.code.unityweb",
+"wasmFrameworkUrl": "FPS Microgame.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.14f1"
+}
