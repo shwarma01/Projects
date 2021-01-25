@@ -10,21 +10,21 @@
     <h1>Tic Tac Toe</h1>
 
     <div class="content">
-      <div class="new-game">
+      <button class="new-game">
         <h1>New game</h1>
-      </div>
+      </button>
 
-      <form action="" class="table">
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-        <input type="button" value="" class="box" />
-      </form>
+      <div class="board">
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+      </div>
 
       <div class="turn-indicator-grid">
         <div class="turn-indicator">
@@ -37,8 +37,13 @@
           </div>
         </div>
 
-        <img src="./images/arrow.JPG" alt="" class="arrow" />
+        <img
+          src="./images/arrow.JPG"
+          alt="An arrow pointing to the player whose turn it is"
+          class="arrow"
+        />
       </div>
     </div>
   </body>
+  <script src="./main.js"></script>
 </html>

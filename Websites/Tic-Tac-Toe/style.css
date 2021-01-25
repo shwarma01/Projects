@@ -24,10 +24,10 @@ h1 {
 
 .new-game > h1 {
   font-size: 59px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
-.table {
+.board {
   width: 36vw;
   height: 64vh;
   margin: auto;
@@ -36,8 +36,16 @@ h1 {
 }
 
 .box {
+  position: relative;
   margin: 10px;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* For when a "X" or "O" is added to the board */
+.box > h1 {
+  position: absolute;
+  top: -40px;
+  left: 65px;
 }
 
 .turn-indicator-grid {
@@ -57,9 +65,10 @@ h1 {
   margin: auto;
 }
 
-.turn-indicator-grid > .arrow {
-  margin: auto;
-  /* 7.5em for X, 26.5em for O */
+.arrow-top {
   margin-top: 7.5em;
-  opacity: 0;
+}
+
+.arrow-bot {
+  margin-top: 26.5em;
 }
