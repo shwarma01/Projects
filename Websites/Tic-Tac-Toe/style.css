@@ -1,0 +1,65 @@
+body {
+  background-color: #5f00b2;
+}
+
+h1 {
+  font-family: "Rockwell", sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 97px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.new-game {
+  width: 19vw;
+  height: 11vh;
+  border-radius: 50%;
+  background-color: #4c00ff;
+  margin: auto;
+}
+
+.new-game > h1 {
+  font-size: 59px;
+  margin-top: 15px;
+}
+
+.table {
+  width: 36vw;
+  height: 64vh;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.box {
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.turn-indicator-grid {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.turn-indicator {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.turn-indicator > div {
+  width: 19vw;
+  height: 11vh;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.turn-indicator-grid > .arrow {
+  margin: auto;
+  /* 7.5em for X, 26.5em for O */
+  margin-top: 7.5em;
+  opacity: 0;
+}

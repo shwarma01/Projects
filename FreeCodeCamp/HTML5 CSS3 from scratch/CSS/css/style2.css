@@ -1,0 +1,66 @@
+h1 {
+  font-size: 30px;
+}
+
+.outer {
+  width: 500px;
+  height: 500px;
+  background: blue;
+}
+
+/* The percentages depend on the parent so if you do not give dimensions to the parent the percentages mean nothing */
+.inner {
+  width: 50%;
+  height: 50%;
+  background: red;
+}
+
+/* 1em = relative depends on parent */
+.relative {
+  font-size: 2em;
+}
+
+.absolute {
+  font-size: 32px;
+}
+
+div {
+  font-size: 10px;
+}
+
+.div-relative {
+  font-size: 2em;
+}
+
+.div-absolute {
+  font-size: 32px;
+}
+
+/* 1rem = relative depends on root (would need to change stuff using "html" selector */
+html {
+  font-size: 32px;
+}
+
+.root-relative {
+  font-size: 2rem;
+}
+
+.root-absolute {
+  font-size: 64px;
+}
+
+/* vh - height - percentage of screen
+  vw - width - percentage of screen
+*/
+
+.banner {
+  width: 50vw;
+  height: 50vh;
+  background: red;
+}
+
+.header {
+  width: 100vw;
+  height: 100vh;
+  background: blue;
+}
