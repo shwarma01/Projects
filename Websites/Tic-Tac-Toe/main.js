@@ -5,9 +5,13 @@ const arrowClassLists = ["arrow-top", "arrow-bot"];
 const players = ["X", "O"];
 let player = 0;
 
+let end = false;
+
 document.querySelectorAll(".box").forEach((box) => {
   box.addEventListener("click", () => {
-    if (box.childNodes.length === 0) {
+    if (end) {
+      checkEnd();
+    } else if (box.childNodes.length === 0) {
       const createElement = document.createElement("h1");
       createElement.innerHTML = players[player % 2];
       arrowClassList.remove(arrowClassLists[player % 2]);
@@ -23,6 +27,7 @@ document.querySelector(".new-game").addEventListener("click", () => {
   arrowClassList.remove(arrowClassLists[player % 2]);
   arrowClassList.add(arrowClassLists[0]);
   player = 0;
+  end = false;
   document.querySelectorAll(".box").forEach((box) => {
     if (box.childNodes.length != 0) {
       box.removeChild(box.childNodes[0]);
@@ -49,6 +54,7 @@ function checkEnd() {
         board[i + 6] === player
       ) {
         alert("Player " + player + " wins!");
+        end = true;
       }
     }
 
@@ -59,6 +65,7 @@ function checkEnd() {
         board[i + 2] === player
       ) {
         alert("Player " + player + " wins!");
+        end = true;
       }
     }
 
@@ -67,6 +74,7 @@ function checkEnd() {
       (board[6] === player && board[4] === player && board[2] === player)
     ) {
       alert("Player " + player + " wins!");
+      end = true;
     }
   });
 }
