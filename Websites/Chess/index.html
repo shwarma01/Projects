@@ -4,6 +4,127 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="heading">
+      <h1>Chess</h1>
+    </div>
+
+    <div class="content">
+      <button class="new-game">
+        <h1>New game</h1>
+      </button>
+
+      <div class="board">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
+
+      <div class="turn-indicator-grid">
+        <div class="turn-indicator">
+          <div class="white" style="background-color: orangered">
+            <h1>White</h1>
+          </div>
+          <div class="black" style="background-color: green">
+            <h1>Black</h1>
+          </div>
+        </div>
+
+        <img
+          src="./images/arrow.JPG"
+          alt="An arrow pointing to which player has to play"
+          class="arrow"
+          style="margin-left: 20px"
+        />
+      </div>
+    </div>
+
+    <script src="./logic/piece.js"></script>
+    <script src="./logic/pawn.js"></script>
+    <script src="./logic/castle.js"></script>
+    <script src="./logic/rook.js"></script>
+    <script src="./logic/bishop.js"></script>
+    <script src="./logic/queen.js"></script>
+    <script src="./logic/king.js"></script>
+    <script src="./logic/main.js"></script>
+  </body>
 </html>
