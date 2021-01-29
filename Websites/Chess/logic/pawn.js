@@ -4,28 +4,34 @@ class Pawn extends Piece {
     this._hasMoved = false;
   }
 
-  getMoves() {
+  getMoves(board) {
     let moves = [];
 
     if (!this._hasMoved) {
-      moves.push([
-        this._position[0],
-        this._position[1] - Math.pow(-1, this._side + 2) * 1,
-      ]);
-      moves.push([
-        this._position[0],
-        this._position[1] - Math.pow(-1, this._side + 2) * 2,
-      ]);
+      if (board[this._position[1] - Math.pow(-1, this._side + 2)][this._position[0]][1] === undefined) {
+        moves.push([this._position[0], this._position[1] - Math.pow(-1, this._side + 2) * 1]);
+      }
+
+      if (board[this._position[1] - Math.pow(-1, this._side + 2) * 2][this._position[0]][1] === undefined) {
+        moves.push([this._position[0], this._position[1] - Math.pow(-1, this._side + 2) * 2]);
+      }
 
       return moves;
     }
 
-    for (let i = -1; i < 2; i++) {
-      if (0 <= this._position[0] + i <= 7) {
-        moves.push([
-          this._position[0] + i,
-          this._position[1] - Math.pow(-1, this._side + 2),
-        ]);
+    if (0 <= this._position[1] - Math.pow(-1, this._side + 2) && this._position[1] - Math.pow(-1, this._side + 2) <= 7) {
+      if (board[this._position[1] - Math.pow(-1, this._side + 2)][this._position[0]][1] === undefined) {
+        moves.push([this._position[0], this._position[1] - Math.pow(-1, this._side + 2)]);
+      }
+    }
+
+    for (let i = -1; i < 2; i += 2) {
+      if (0 <= this._position[0] + i && this._position[0] + i <= 7) {
+        if (board[this._position[1] - Math.pow(-1, this._side + 2)][this._position[0] + i][1] !== undefined) {
+          if (board[this._position[1] - Math.pow(-1, this._side + 2)][this._position[0] + i][1].getSide() !== this._side) {
+            moves.push([this._position[0] + i, this._position[1] - Math.pow(-1, this._side + 2)]);
+          }
+        }
       }
     }
 

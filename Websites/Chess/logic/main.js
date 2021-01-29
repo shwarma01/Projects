@@ -20,9 +20,7 @@ for (let i = 0; i < rows.length; i++) {
 
 // Arrow would start at the top left of its grid so this will put it to point to "white"
 const changeArrowPosition = function (turn) {
-  document
-    .querySelector(".arrow")
-    .classList.add(["arrow-top", "arrow-bottom"][turn]);
+  document.querySelector(".arrow").classList.add(["arrow-top", "arrow-bottom"][turn]);
 };
 changeArrowPosition(turn);
 
@@ -54,9 +52,7 @@ const newGame = () => {
 
   pieces.forEach((piece) => {
     board[piece.getPosition()[1]][piece.getPosition()[0]][1] = piece;
-    board[piece.getPosition()[1]][piece.getPosition()[0]][0].appendChild(
-      piece.getImg()
-    );
+    board[piece.getPosition()[1]][piece.getPosition()[0]][0].appendChild(piece.getImg());
   });
 };
 newGame();
@@ -82,19 +78,38 @@ document.querySelector(".new-game").addEventListener("click", () => {
 // Logic for dealing with the clickOnPiece styling and stopping players from clicking multiple pieces at the same time
 board.forEach((row) => {
   row.forEach((colPiecePair) => {
-    const col = colPiecePair[0];
+    let col = colPiecePair[0];
     col.addEventListener("click", () => {
       if (col.children.length === 1 && pieceChosen === null) {
         pieceChosen = colPiecePair;
         col.classList.add(clickOnPiece);
-        pieceChosen[1].getMoves().forEach((position) => {
+
+        pieceChosen[1].getMoves(board).forEach((position) => {
           board[position[1]][position[0]][0].classList.add(validMoveSpace);
         });
       } else if (pieceChosen != null) {
+        if (colPiecePair[0].classList.contains(validMoveSpace)) {
+          pieceChosen[1].getMoves(board).forEach((position) => {
+            board[position[1]][position[0]][0].classList.remove(validMoveSpace);
+          });
+
+          // colPiecePair[1] was undefined now it will be the piece class, then changing image, then changing position in class
+          colPiecePair[1] = pieceChosen[1];
+          colPiecePair[0].appendChild(pieceChosen[1].getImg());
+          pieceChosen[1].setPosition([row.indexOf(colPiecePair), board.indexOf(row)]);
+
+          if (pieceChosen[1].constructor.name === "Pawn") {
+            pieceChosen[1].setHasMove();
+          }
+
+          pieceChosen.splice(1, 1);
+        } else {
+          pieceChosen[1].getMoves(board).forEach((position) => {
+            board[position[1]][position[0]][0].classList.remove(validMoveSpace);
+          });
+        }
+
         pieceChosen[0].classList.remove(clickOnPiece);
-        pieceChosen[1].getMoves().forEach((position) => {
-          board[position[1]][position[0]][0].classList.remove(validMoveSpace);
-        });
         pieceChosen = null;
       }
     });
