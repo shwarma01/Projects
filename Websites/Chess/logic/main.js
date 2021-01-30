@@ -93,6 +93,10 @@ board.forEach((row) => {
             board[position[1]][position[0]][0].classList.remove(validMoveSpace);
           });
 
+          if (colPiecePair[0].children.length !== 0) {
+            colPiecePair[0].removeChild(colPiecePair[1].getImg());
+          }
+
           // colPiecePair[1] was undefined now it will be the piece class, then changing image, then changing position in class
           colPiecePair[1] = pieceChosen[1];
           colPiecePair[0].appendChild(pieceChosen[1].getImg());

@@ -5,43 +5,41 @@ class Castle extends Piece {
 
   getMoves(board) {
     let moves = [];
-    let spliceOffset = 0;
 
     for (let j = 0; j < 2; j++) {
-      spliceOffset = moves.length;
-      for (let i = -7; i <= 7; i++) {
-        if (i !== 0) {
-          if (j === 0) {
-            if (0 <= this._position[0] + i && this._position[0] + i <= 7) {
-              moves.push([this._position[0] + i, this._position[1]]);
+      for (let k = -1; k < 2; k += 2) {
+        for (let i = -1; i >= -7; i--) {
+          if (j == 0) {
+            if (!(0 <= this._position[0] + k * i && this._position[0] + k * i <= 7)) {
+              break;
+            }
 
-              if (board[this._position[1]][this._position[0] + i][1] !== undefined) {
-                if (board[this._position[1]][this._position[0] + i][1].getSide() !== this._side) {
-                  moves.splice(spliceOffset, moves.length - spliceOffset - 1);
-                } else {
-                  moves.splice(spliceOffset, moves.length - spliceOffset);
-                }
+            let element = board[this._position[1]][this._position[0] + k * i][1];
 
-                if (i > 0) {
-                  break;
-                }
+            if (element !== undefined) {
+              if (element.getSide() !== this._side) {
+                moves.push([this._position[0] + k * i, this._position[1]]);
               }
+
+              break;
+            } else {
+              moves.push([this._position[0] + k * i, this._position[1]]);
             }
           } else {
-            if (0 <= this._position[1] + i && this._position[1] + i <= 7) {
-              moves.push([this._position[0], this._position[1] + i]);
+            if (!(0 <= this._position[1] + k * i && this._position[1] + k * i <= 7)) {
+              break;
+            }
 
-              if (board[this._position[1] + i][this._position[0]][1] !== undefined) {
-                if (board[this._position[1] + i][this._position[0]][1].getSide() !== this._side) {
-                  moves.splice(spliceOffset, moves.length - spliceOffset - 1);
-                } else {
-                  moves.splice(spliceOffset, moves.length - spliceOffset);
-                }
+            let element = board[this._position[1] + k * i][this._position[0]][1];
 
-                if (i > 0) {
-                  break;
-                }
+            if (element !== undefined) {
+              if (element.getSide() !== this._side) {
+                moves.push([this._position[0], this._position[1] + k * i]);
               }
+
+              break;
+            } else {
+              moves.push([this._position[0], this._position[1] + k * i]);
             }
           }
         }

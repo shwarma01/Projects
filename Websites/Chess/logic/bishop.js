@@ -5,48 +5,28 @@ class Bishop extends Piece {
 
   getMoves(board) {
     let moves = [];
-    let spliceOffset = 0;
 
-    for (let j = 0; j < 2; j++) {
-      spliceOffset = moves.length;
-      for (let i = -7; i < 8; i++) {
-        if (i === 0) {
-          continue;
-        }
+    for (let j = -1; j < 2; j += 2) {
+      for (let k = -1; k < 2; k += 2) {
+        for (let i = -1; i >= -7; i--) {
+          if (0 <= this._position[0] + k * i && this._position[0] + k * i <= 7) {
+            if (0 <= this._position[1] + j * k * i && this._position[1] + j * k * i <= 7) {
+              let element = board[this._position[1] + j * k * i][this._position[0] + k * i][1];
 
-        if (0 <= this._position[0] + i && this._position[0] + i <= 7) {
-          if (j === 0) {
-            if (0 <= this._position[1] + i && this._position[1] + i <= 7) {
-              moves.push([this._position[0] + i, this._position[1] + i]);
-
-              if (board[this._position[1] + i][this._position[0] + i][1] !== undefined) {
-                if (board[this._position[1] + i][this._position[0] + i][1].getSide() !== this._side) {
-                  moves.splice(spliceOffset, moves.length - spliceOffset - 1);
-                } else {
-                  moves.splice(spliceOffset, moves.length - spliceOffset);
+              if (element !== undefined) {
+                if (element.getSide() !== this._side) {
+                  moves.push([this._position[0] + k * i, this._position[1] + j * k * i]);
                 }
 
-                if (i > 0) {
-                  break;
-                }
+                break;
+              } else {
+                moves.push([this._position[0] + k * i, this._position[1] + j * k * i]);
               }
+            } else {
+              break;
             }
           } else {
-            if (0 <= this._position[1] - i && this._position[1] - i <= 7) {
-              moves.push([this._position[0] + i, this._position[1] - i]);
-
-              if (board[this._position[1] - i][this._position[0] + i][1] !== undefined) {
-                if (board[this._position[1] - i][this._position[0] + i][1].getSide() !== this._side) {
-                  moves.splice(spliceOffset, moves.length - spliceOffset - 1);
-                } else {
-                  moves.splice(spliceOffset, moves.length - spliceOffset);
-                }
-
-                if (i > 0) {
-                  break;
-                }
-              }
-            }
+            break;
           }
         }
       }
