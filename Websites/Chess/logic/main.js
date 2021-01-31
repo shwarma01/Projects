@@ -1,28 +1,30 @@
-// List to figure out whose turn it is
-const players = ["white", "black"];
-
 // CSS styling for when player clicks on a piece and the spaces that piece can move to
 const clickOnPiece = "click-on-piece";
 const validMoveSpace = "valid-move-space";
 
 // Variables which will be used for logic
-let turn = 0;
+let turn = 1;
+let end = false;
 let pieceChosen = null; // Keeping track of which piece has been chosen
+
 // Getting all board elements from DOM
-const board = [];
 const rows = document.querySelector(".board").children;
+const board = [];
 for (let i = 0; i < rows.length; i++) {
   board.push([]);
   for (let j = 0; j < rows[i].children.length; j++) {
-    board[i].push([rows[i].children[j], undefined]);
+    board[board.length - 1].push([rows[i].children[j], undefined]);
   }
 }
 
 // Arrow would start at the top left of its grid so this will put it to point to "white"
-const changeArrowPosition = function (turn) {
+const changeArrowPosition = function () {
+  document.querySelector(".arrow").classList.remove(["arrow-top", "arrow-bottom"][turn]);
+  ++turn;
+  turn %= 2;
   document.querySelector(".arrow").classList.add(["arrow-top", "arrow-bottom"][turn]);
 };
-changeArrowPosition(turn);
+changeArrowPosition();
 
 // Function that wil get a new set of pieces in their starting positions
 const newGame = () => {
@@ -60,17 +62,18 @@ newGame();
 // Event listener to start a new game
 document.querySelector(".new-game").addEventListener("click", () => {
   pieceChosen = null;
-  board.forEach((row) => {
-    row.forEach((colPiecePair) => {
-      let col = colPiecePair[0];
-      if (col.children.length === 1) {
-        col.removeChild(col.children[0]);
-      }
+  end = false;
+  turn = 1;
+  changeArrowPosition();
 
-      col.classList.remove(clickOnPiece);
-      col.classList.remove(validMoveSpace);
-    });
-  });
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (board[i][j][1] !== undefined) {
+        board[i][j][0].removeChild(board[i][j][1].getImg());
+        board[i][j][1] = undefined;
+      }
+    }
+  }
 
   newGame();
 });
@@ -81,24 +84,29 @@ board.forEach((row) => {
     let col = colPiecePair[0];
     col.addEventListener("click", () => {
       if (col.children.length === 1 && pieceChosen === null) {
-        pieceChosen = colPiecePair;
-        col.classList.add(clickOnPiece);
+        if (colPiecePair[1].getSide() === turn) {
+          pieceChosen = colPiecePair;
+          col.classList.add(clickOnPiece);
 
-        pieceChosen[1].getMoves(board).forEach((position) => {
-          board[position[1]][position[0]][0].classList.add(validMoveSpace);
-        });
+          pieceChosen[1].getMoves(board).forEach((position) => {
+            board[position[1]][position[0]][0].classList.add(validMoveSpace);
+          });
+        }
       } else if (pieceChosen != null) {
         if (colPiecePair[0].classList.contains(validMoveSpace)) {
           pieceChosen[1].getMoves(board).forEach((position) => {
             board[position[1]][position[0]][0].classList.remove(validMoveSpace);
           });
 
-          if (colPiecePair[0].children.length !== 0) {
+          if (colPiecePair[1] !== undefined) {
             colPiecePair[0].removeChild(colPiecePair[1].getImg());
+
+            if (colPiecePair[1].constructor.name === "King") {
+              end = true;
+              alert("Game has ended, " + ["White", "Black"][turn] + " has won!");
+            }
           }
 
-          // colPiecePair[1] was undefined now it will be the piece class, then changing image, then changing position in class
-          colPiecePair[1] = pieceChosen[1];
           colPiecePair[0].appendChild(pieceChosen[1].getImg());
           pieceChosen[1].setPosition([row.indexOf(colPiecePair), board.indexOf(row)]);
 
@@ -106,7 +114,9 @@ board.forEach((row) => {
             pieceChosen[1].setHasMove();
           }
 
+          colPiecePair[1] = pieceChosen[1];
           pieceChosen.splice(1, 1);
+          changeArrowPosition();
         } else {
           pieceChosen[1].getMoves(board).forEach((position) => {
             board[position[1]][position[0]][0].classList.remove(validMoveSpace);
@@ -115,6 +125,10 @@ board.forEach((row) => {
 
         pieceChosen[0].classList.remove(clickOnPiece);
         pieceChosen = null;
+
+        if (end) {
+          document.querySelector(".new-game").click();
+        }
       }
     });
   });
