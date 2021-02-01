@@ -4,19 +4,32 @@ body {
 }
 
 /* Heading on top of page */
+.heading {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+}
+
 .heading > h1 {
   color: white;
   text-align: center;
   font-size: 4em;
   text-decoration: underline;
   text-decoration-color: white;
-  margin-top: 5px;
-  margin-bottom: 1.3em;
+}
+
+.heading > .pawn-upgrades {
+  margin: auto;
+}
+
+.unclickable-buttons {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Rest of page */
 .content {
   display: grid;
+  position: relative;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -39,6 +52,7 @@ body {
 .board {
   display: grid;
   grid-template-rows: repeat(8, 1fr);
+  position: relative;
 }
 
 .row {

@@ -1,6 +1,14 @@
-// CSS styling for when player clicks on a piece and the spaces that piece can move to
+// CSS styling for when player clicks on a piece and the spaces that piece can move to and buttons for upgrading pawns
 const clickOnPiece = "click-on-piece";
 const validMoveSpace = "valid-move-space";
+const unclickableButtons = "unclickable-buttons";
+
+// Buttons to let player upgrade Pawns when they reach the other side
+let upgrade = null;
+const buttons = document.querySelector(".heading").children[1];
+for (let i = 0; i < buttons.children.length; i++) {
+  buttons.children[i].classList.add(unclickableButtons);
+}
 
 // Variables which will be used for logic
 let turn = 1;
@@ -75,6 +83,12 @@ document.querySelector(".new-game").addEventListener("click", () => {
     }
   }
 
+  for (let i = 0; i < buttons.children.length; i++) {
+    if (!buttons.children[i].classList.contains(unclickableButtons)) {
+      buttons.children[i].classList.add(unclickableButtons);
+    }
+  }
+
   newGame();
 });
 
@@ -83,7 +97,9 @@ board.forEach((row) => {
   row.forEach((colPiecePair) => {
     let col = colPiecePair[0];
     col.addEventListener("click", () => {
-      if (col.children.length === 1 && pieceChosen === null) {
+      if (upgrade !== null) {
+        alert("Pick a piece to upgrade the pawn too!");
+      } else if (col.children.length === 1 && pieceChosen === null) {
         if (colPiecePair[1].getSide() === turn) {
           pieceChosen = colPiecePair;
           col.classList.add(clickOnPiece);
@@ -107,12 +123,18 @@ board.forEach((row) => {
             }
           }
 
-          colPiecePair[0].appendChild(pieceChosen[1].getImg());
-          pieceChosen[1].setPosition([row.indexOf(colPiecePair), board.indexOf(row)]);
-
           if (pieceChosen[1].constructor.name === "Pawn") {
             pieceChosen[1].setHasMove();
+
+            if (pieceChosen[1].getSide() === 0 && pieceChosen[1].getPosition()[1] === 1) {
+              upgrade = [row.indexOf(colPiecePair), board.indexOf(row)];
+            } else if (pieceChosen[1].getSide() === 1 && pieceChosen[1].getPosition()[1] === 6) {
+              upgrade = [row.indexOf(colPiecePair), board.indexOf(row)];
+            }
           }
+
+          colPiecePair[0].appendChild(pieceChosen[1].getImg());
+          pieceChosen[1].setPosition([row.indexOf(colPiecePair), board.indexOf(row)]);
 
           colPiecePair[1] = pieceChosen[1];
           pieceChosen.splice(1, 1);
@@ -128,8 +150,41 @@ board.forEach((row) => {
 
         if (end) {
           document.querySelector(".new-game").click();
+        } else if (upgrade !== null) {
+          for (let i = 0; i < buttons.children.length; i++) {
+            buttons.children[i].classList.remove(unclickableButtons);
+          }
         }
       }
     });
   });
 });
+
+for (let i = 0; i < buttons.children.length; i++) {
+  buttons.children[i].addEventListener("click", () => {
+    let colPiecePair = board[upgrade[1]][upgrade[0]];
+    colPiecePair[0].removeChild(colPiecePair[1].getImg());
+
+    switch (buttons.children[i].innerHTML) {
+      case "Queen":
+        colPiecePair[1] = new Queen(colPiecePair[1].getSide(), colPiecePair[1].getPosition());
+        break;
+      case "Bishop":
+        colPiecePair[1] = new Bishop(colPiecePair[1].getSide(), colPiecePair[1].getPosition());
+        break;
+      case "Rook":
+        colPiecePair[1] = new Rook(colPiecePair[1].getSide(), colPiecePair[1].getPosition());
+        break;
+      case "Castle":
+        colPiecePair[1] = new Castle(colPiecePair[1].getSide(), colPiecePair[1].getPosition());
+        break;
+    }
+
+    colPiecePair[0].appendChild(colPiecePair[1].getImg());
+    upgrade = null;
+
+    for (let j = 0; j < 4; j++) {
+      buttons.children[j].classList.add(unclickableButtons);
+    }
+  });
+}
