@@ -1,0 +1,37 @@
+h1 {
+  background-color: red;
+  padding: 20px;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+
+p {
+  background-color: blue;
+  padding: 20px;
+  border: 13px solid green;
+  border-radius: 50%;
+  margin: -50px;
+}
+
+.buttons {
+  margin: 3rem;
+}
+
+a {
+  background: #689f3f;
+  text-decoration: none;
+  padding: 1.2rem 1.5rem;
+  color: #222;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+#one {
+  border: 0.2rem solid #222;
+}
+
+#two {
+  outline: 0.2rem solid #222;
+  outline-offset: -10px;
+}
